@@ -13,6 +13,7 @@ class DraggableGridModel<Element: ElementType> {
 
 struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, Element: ElementType>: View where Element.ID == String {
     @State private var draggingElement: Element?
+    @State private var offset: CGSize = .zero
     
     private let columns: Int
     private let columnSpacing: CGFloat
@@ -42,7 +43,6 @@ struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, El
     
     var body: some View {
         ZStack {
-            
             Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: list) { element in
                 if draggingElement?.id == element.id {
                     placeholder()
@@ -52,11 +52,10 @@ struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, El
             }
             
             Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: list) { element in
-                DraggableElement(element: element, draggingElement: $draggingElement) {
+                DraggableElement(draggingElement: $draggingElement, element: element) {
                     draggingContent(element)
                 }
             }
-            
         }
         .coordinateSpace(name: "grid")
     }
@@ -64,24 +63,27 @@ struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, El
 
 struct DraggableElement<Content: View, Element: ElementType>: View {
     @State private var offset: CGSize = .zero
-    let element: Element
     @Binding var draggingElement: Element?
     
+    let element: Element
     let content: () -> Content
     
     var body: some View {
         ZStack {
-            content()
+            if draggingElement?.id == element.id {
+                content()
+            } else {
+                Color.clear
+                    .frame(width: 100, height: 100)
+            }
         }
+        .contentShape(Rectangle())
         .offset(offset)
         .gesture(dragGesture())
     }
     
     private func dragGesture() -> some Gesture {
         let longPressGesture = LongPressGesture()
-            .onChanged { _ in
-                draggingElement = element
-            }
             .onEnded { _ in
                 draggingElement = nil
             }
@@ -92,8 +94,11 @@ struct DraggableElement<Content: View, Element: ElementType>: View {
                 offset = value.translation
             }
             .onEnded { value in
-                draggingElement = nil
-                offset = .zero
+                withAnimation {
+                    draggingElement = nil
+                    offset = .zero
+                }
+
             }
         
         return longPressGesture.sequenced(before: dragGesture)
@@ -120,7 +125,7 @@ struct DraggableElement<Content: View, Element: ElementType>: View {
         }
         .padding()
         .border(Color.black)
-    }, draggingContent: { element in
+    }, draggingContent: { (element) in
         VStack(spacing: 8) {
             Image(systemName: "star")
             Text(element.text)

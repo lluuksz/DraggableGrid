@@ -33,12 +33,15 @@ struct ContentView: View {
                     Text(element.name)
                 }
                 .frame(width: 100, height: 100, alignment: .top)
+                .background(Color.red)
                 
-            } draggingContent: { element in
+            } draggingContent: { (element) in
                 VStack {
                     Image(systemName: "star.fill")
                 }
                 .frame(width: 100, height: 100, alignment: .top)
+                .background(Color.blue)
+                
             } placeholder: {
                 VStack {
                     
