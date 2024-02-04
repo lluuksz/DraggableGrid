@@ -9,11 +9,11 @@ import SwiftUI
 
 // Reference: https://www.swiftpal.io/articles/how-to-create-a-grid-view-in-swiftui-for-ios-13
 
-typealias ElementType = Hashable & Identifiable
+typealias ElementType = Identifiable
 
 struct Grid<Content: View, Element: ElementType>: View where Element.ID == String {
     
-    struct MatrixItem: Hashable, Identifiable {
+    struct MatrixItem: Identifiable {
         let id: String
         let element: Element
         let index: Int
