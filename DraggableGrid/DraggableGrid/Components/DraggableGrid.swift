@@ -9,16 +9,21 @@ import SwiftUI
 import Combine
 
 class DraggableGridModel<Element: ElementType>: ObservableObject {
-    @Published private(set) var elements: [Element] = []
-    @Published private(set) var backgroundElementIds: [Element.ID] = []
     
-    private var positions: [Element.ID:CGRect] = [:]
+    struct IdIdentifable: Identifiable {
+        let id: Element.ID
+    }
+    
+    @Published private(set) var elements: [Element] = []
+    @Published private(set) var backgroundElementIds: [IdIdentifable] = []
+    
+    private var locations: [Element.ID:CGRect] = [:]
     
     private var cancellable = Set<AnyCancellable>()
     
     init() {
         $elements.sink { value in
-            self.backgroundElementIds = value.map({ $0.id })
+            self.backgroundElementIds = value.map({ IdIdentifable(id: $0.id) })
         }.store(in: &cancellable)
     }
     
@@ -26,15 +31,30 @@ class DraggableGridModel<Element: ElementType>: ObservableObject {
         self.elements = elements
     }
     
-    func savePosition(id: Element.ID, rect: CGRect) {
-        if positions[id] == nil {
-            positions[id] = rect
+    func saveOriginalPosition(id: Element.ID, rect: CGRect) {
+        if locations[id] == nil {
+            locations[id] = rect
+            print("original location: \(rect)")
         }
     }
-}
+    
+    func getOriginalPosition(for element: Element) -> CGRect? {
+        locations[element.id]
+    }
+    
+    func sort(element: Element, using location: CGPoint) {
+        print(location)
+        
+        guard let newLocation = locations.first(where: {
+            abs($0.value.midX - location.x) < 15 && abs($0.value.midY - location.y) < 15
+        }) else { return }
+        
+        guard newLocation.key != element.id else { return }
 
-struct IdIdentifable: Identifiable {
-    let id: String
+        print("\(newLocation.key): \(newLocation.value)")
+        
+        
+    }
 }
 
 struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, Element: ElementType>: View where Element.ID == String {
@@ -69,11 +89,15 @@ struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, El
     
     var body: some View {
         ZStack {
-            Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements) { element in
-                if element.id == draggingElement?.id {
-                    placeholder()
+            Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.backgroundElementIds) { id in
+                if let element = model.elements.first(where: { $0.id == id.id }) {
+                    if id.id == draggingElement?.id {
+                        placeholder()
+                    } else {
+                        content(element)
+                    }
                 } else {
-                    content(element)
+                    EmptyView()
                 }
             }
             
@@ -83,7 +107,7 @@ struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, El
                 }
                 .overlay(
                     GeometryReader { proxy -> Color in
-                        model.savePosition(id: element.id, rect: proxy.frame(in: .named("grid")))
+                        model.saveOriginalPosition(id: element.id, rect: proxy.frame(in: .named("grid")))
                         
                         return Color.clear
                     }
@@ -92,6 +116,7 @@ struct DraggableGrid<Content: View, DraggingContent: View, Placeholder: View, El
             }
         }
         .coordinateSpace(name: "grid")
+        .environmentObject(model)
     }
 }
 
@@ -99,6 +124,8 @@ struct DraggableElement<Content: View, Element: ElementType>: View {
     @State private var offset: CGSize = .zero
     @State private var active: Bool = false
     @Binding var draggingElement: Element?
+    
+    @EnvironmentObject var model: DraggableGridModel<Element>
     
     let element: Element
     let content: () -> Content
@@ -126,6 +153,16 @@ struct DraggableElement<Content: View, Element: ElementType>: View {
             .onChanged { value in
                 draggingElement = element
                 offset = value.translation
+                
+                if let originalLocation = model.getOriginalPosition(for: element) {
+                    let midX = originalLocation.midX - value.translation.width
+                    let midY = originalLocation.midY - value.translation.height
+                    let point = CGPoint(x: midX, y: midY)
+                    
+                    model.sort(element: element, using: point)
+                }
+                
+                
             }
             .onEnded { value in
                 withAnimation {

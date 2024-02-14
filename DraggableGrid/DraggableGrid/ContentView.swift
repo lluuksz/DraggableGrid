@@ -25,9 +25,15 @@ extension Bubble {
 }
 
 struct ContentView: View {
+    @ObservedObject var model = DraggableGridModel<Bubble>()
+    
+    init() {
+        model.setElement(elements: Bubble.all)
+    }
+    
     var body: some View {
         VStack {
-            DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: Bubble.all) { element in
+            DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, model: model) { element in
                 VStack {
                     Image(systemName: "star.fill")
                     Text(element.name)
@@ -49,6 +55,8 @@ struct ContentView: View {
                 .frame(width: 100, height: 100, alignment: .top)
                 .background(Color.gray)
             }
+            
+            Spacer()
         }
         .padding()
     }
