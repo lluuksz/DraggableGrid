@@ -29,7 +29,6 @@ class DraggableGridModel: ObservableObject {
         
         if locations[index] == nil {
             locations[index] = rect
-            print("Saved x: \(rect.midX) y: \(rect.midY) for \(element.name)")
         }
     }
     

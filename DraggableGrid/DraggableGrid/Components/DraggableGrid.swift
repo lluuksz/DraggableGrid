@@ -35,17 +35,25 @@ struct DraggableGrid: View {
     var body: some View {
         ZStack {
             Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements1) { element in
-                if let content {
-                    AnyView(content(element))
-                        .overlay(
-                            GeometryReader { proxy -> Color in
-                                model.saveLocation(element: element, rect: proxy.frame(in: .named("grid")))
-                                
-                                return Color.clear
-                            }
-                        )
-                        .matchedGeometryEffect(id: element.id, in: namespace)
+                if model.draggableElement?.id == element.id {
+                    if let placeholder {
+                        AnyView(placeholder())
+                            .matchedGeometryEffect(id: element.id, in: namespace)
+                    }
+                } else {
+                    if let content {
+                        AnyView(content(element))
+                            .overlay(
+                                GeometryReader { proxy -> Color in
+                                    model.saveLocation(element: element, rect: proxy.frame(in: .named("grid")))
+                                    
+                                    return Color.clear
+                                }
+                            )
+                            .matchedGeometryEffect(id: element.id, in: namespace)
+                    }
                 }
+                
             }
             
             Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements2) { element in
@@ -78,9 +86,16 @@ struct DraggableGrid: View {
 }
 
 extension DraggableGrid {
-    func content(content: @escaping (DraggableElementWrapper) -> any View) -> some View {
+    func content(_ content: @escaping (DraggableElementWrapper) -> any View) -> DraggableGrid {
         var view = self
         view.content = content
+        
+        return view
+    }
+    
+    func placeholder(_ placeholder: @escaping () -> any View) -> DraggableGrid {
+        var view = self
+        view.placeholder = placeholder
         
         return view
     }

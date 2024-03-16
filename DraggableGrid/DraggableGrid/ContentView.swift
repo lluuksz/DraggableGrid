@@ -36,6 +36,11 @@ struct ContentView: View {
                     .frame(width: 100, height: 100)
                     .background(Color.red)
                 }
+                .placeholder {
+                    Rectangle()
+                        .frame(width: 100, height: 100)
+                        .background(Color.gray.opacity(0.3))
+                }
         }
     }
 }
