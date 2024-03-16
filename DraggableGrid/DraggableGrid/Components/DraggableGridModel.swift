@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 
 class DraggableGridModel: ObservableObject {
+    private enum C {
+        static let ratio: CGFloat = 15
+    }
+    
     @Published private(set) var elements1: [DraggableElementWrapper] = []
     @Published private(set) var elements2: [DraggableElementWrapper] = []
     @Published var draggableElement: DraggableElementWrapper?
@@ -35,15 +39,11 @@ class DraggableGridModel: ObservableObject {
         return locations[index]
     }
     
-    func sort(element: DraggableElementWrapper, using location: CGPoint) {
-        print("\(element.name) moved to: \(location)")
-        
+    func sort(element: DraggableElementWrapper, point: CGPoint) {
         guard let index = elements1.firstIndex(where: { $0.id == element.id }) else { return }
-        guard let newLocation = locations.first(where: {
-            abs($0.value.midX - location.x) < 15 && abs($0.value.midY - location.y) < 15
-        }) else { return }
-        
+        guard let newLocation = locations.firstMatch(point: point, ratio: C.ratio) else { return }
         guard newLocation.key != index else { return }
+        
         let offset = index < newLocation.key ? newLocation.key + 1 : newLocation.key
         
         withAnimation {

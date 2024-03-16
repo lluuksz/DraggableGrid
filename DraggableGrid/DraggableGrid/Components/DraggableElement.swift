@@ -46,7 +46,7 @@ struct DraggableElement: View {
                     let midY = location.midY + value.translation.height
                     let point = CGPoint(x: midX, y: midY)
                     
-                    model.sort(element: element, using: point)
+                    model.sort(element: element, point: point)
                 }
             }
             .onEnded { value in
