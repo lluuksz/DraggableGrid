@@ -11,6 +11,9 @@
 		F45ECE6A2B55C81B008264B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45ECE692B55C81B008264B4 /* ContentView.swift */; };
 		F45ECE6C2B55C81D008264B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45ECE6B2B55C81D008264B4 /* Assets.xcassets */; };
 		F45ECE6F2B55C81D008264B4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45ECE6E2B55C81D008264B4 /* Preview Assets.xcassets */; };
+		F49F22612BA5A633007D4F5B /* DraggableGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F22602BA5A633007D4F5B /* DraggableGridModel.swift */; };
+		F49F22632BA5A64C007D4F5B /* DraggableElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F22622BA5A64C007D4F5B /* DraggableElementWrapper.swift */; };
+		F49F22652BA5A663007D4F5B /* DraggableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F22642BA5A663007D4F5B /* DraggableElement.swift */; };
 		F4A547902B56872D0080A7E5 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5478F2B56872D0080A7E5 /* Grid.swift */; };
 		F4A547942B56BA850080A7E5 /* DraggableGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A547932B56BA850080A7E5 /* DraggableGrid.swift */; };
 /* End PBXBuildFile section */
@@ -21,6 +24,9 @@
 		F45ECE692B55C81B008264B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F45ECE6B2B55C81D008264B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F45ECE6E2B55C81D008264B4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F49F22602BA5A633007D4F5B /* DraggableGridModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableGridModel.swift; sourceTree = "<group>"; };
+		F49F22622BA5A64C007D4F5B /* DraggableElementWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableElementWrapper.swift; sourceTree = "<group>"; };
+		F49F22642BA5A663007D4F5B /* DraggableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableElement.swift; sourceTree = "<group>"; };
 		F4A5478F2B56872D0080A7E5 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		F4A547932B56BA850080A7E5 /* DraggableGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +83,9 @@
 			children = (
 				F4A5478F2B56872D0080A7E5 /* Grid.swift */,
 				F4A547932B56BA850080A7E5 /* DraggableGrid.swift */,
+				F49F22602BA5A633007D4F5B /* DraggableGridModel.swift */,
+				F49F22622BA5A64C007D4F5B /* DraggableElementWrapper.swift */,
+				F49F22642BA5A663007D4F5B /* DraggableElement.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -153,8 +162,11 @@
 			files = (
 				F45ECE6A2B55C81B008264B4 /* ContentView.swift in Sources */,
 				F4A547942B56BA850080A7E5 /* DraggableGrid.swift in Sources */,
+				F49F22612BA5A633007D4F5B /* DraggableGridModel.swift in Sources */,
 				F45ECE682B55C81B008264B4 /* DraggableGridApp.swift in Sources */,
 				F4A547902B56872D0080A7E5 /* Grid.swift in Sources */,
+				F49F22652BA5A663007D4F5B /* DraggableElement.swift in Sources */,
+				F49F22632BA5A64C007D4F5B /* DraggableElementWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

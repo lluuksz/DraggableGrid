@@ -7,58 +7,36 @@
 
 import SwiftUI
 
-struct Bubble: Hashable & Identifiable {
-    let id: String = UUID().uuidString
-    let name: String
-}
-
-extension Bubble {
-    static let all: [Bubble] = [
-        Bubble(name: "Bubble 1"),
-        Bubble(name: "Bubble 2"),
-        Bubble(name: "Bubble 3"),
-        Bubble(name: "Bubble 4"),
-        Bubble(name: "Bubble 5"),
-        Bubble(name: "Bubble 6"),
-        Bubble(name: "Bubble 7")
+extension DraggableElementWrapper {
+    static let all: [DraggableElementWrapper] = [
+        DraggableElementWrapper(name: "Bubble 1"),
+        DraggableElementWrapper(name: "Bubble 2"),
+        DraggableElementWrapper(name: "Bubble 3"),
+        DraggableElementWrapper(name: "Bubble 4"),
+        DraggableElementWrapper(name: "Bubble 5"),
+        DraggableElementWrapper(name: "Bubble 6"),
+        DraggableElementWrapper(name: "Bubble 7")
     ]
 }
 
 struct ContentView: View {
-    @ObservedObject var model = DraggableGridModel<Bubble>()
+    @ObservedObject var model = DraggableGridModel()
     
     init() {
-        model.setElement(elements: Bubble.all)
+        model.setElement(elements: DraggableElementWrapper.all)
     }
     
     var body: some View {
         VStack {
-            DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, model: model) { element in
-                VStack {
-                    Image(systemName: "star.fill")
-                    Text(element.name)
+            DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, model: model)
+                .content { element in
+                    ZStack {
+                        Text(element.name)
+                    }
+                    .frame(width: 100, height: 100)
+                    .background(Color.red)
                 }
-                .frame(width: 100, height: 100, alignment: .top)
-                .background(Color.red)
-                
-            } draggingContent: { (element) in
-                VStack {
-                    Image(systemName: "star.fill")
-                }
-                .frame(width: 100, height: 100, alignment: .top)
-                .background(Color.blue)
-                
-            } placeholder: {
-                VStack {
-                    
-                }
-                .frame(width: 100, height: 100, alignment: .top)
-                .background(Color.gray)
-            }
-            
-            Spacer()
         }
-        .padding()
     }
 }
 
