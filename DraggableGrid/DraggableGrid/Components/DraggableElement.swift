@@ -38,7 +38,6 @@ struct DraggableElement: View {
         
         let dragGesture = DragGesture(minimumDistance: 0, coordinateSpace: .named("grid"))
             .onChanged { value in
-                model.draggableElement = element
                 offset = value.translation
                 
                 if let location = model.getLocation(for: element) {
@@ -50,8 +49,12 @@ struct DraggableElement: View {
                 }
             }
             .onEnded { value in
+                
+                model.finishSort { newPosition in
+                    print("New position: \(newPosition)")
+                }
+                
                 withAnimation {
-                    model.draggableElement = nil
                     offset = .zero
                 }
 

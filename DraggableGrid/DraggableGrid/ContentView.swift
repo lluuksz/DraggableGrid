@@ -36,6 +36,13 @@ struct ContentView: View {
                     .frame(width: 100, height: 100)
                     .background(Color.red)
                 }
+                .draggableContent { element in
+                    ZStack {
+                        Text(element.name)
+                    }
+                    .frame(width: 100, height: 100)
+                    .background(Color.blue)
+                }
                 .placeholder {
                     Rectangle()
                         .frame(width: 100, height: 100)

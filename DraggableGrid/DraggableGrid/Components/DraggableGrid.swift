@@ -18,7 +18,7 @@ struct DraggableGrid: View {
     private let rowSpacing: CGFloat
     
     private var content: ((DraggableElementWrapper) -> any View)?
-    private var draggingContent: ((DraggableElementWrapper) -> any View)?
+    private var draggableContent: ((DraggableElementWrapper) -> any View)?
     private var placeholder: (() -> any View)?
     
     init(
@@ -53,16 +53,13 @@ struct DraggableGrid: View {
                             .matchedGeometryEffect(id: element.id, in: namespace)
                     }
                 }
-                
             }
             
             Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements2) { element in
-                DraggableElement(element: element) {
-                    ZStack {
-                        Text(element.name)
+                if let draggableContent {
+                    DraggableElement(element: element) {
+                        draggableContent(element)
                     }
-                    .frame(width: 100, height: 100)
-                    .background(Color.blue)
                 }
             }
         }
@@ -89,6 +86,13 @@ extension DraggableGrid {
     func content(_ content: @escaping (DraggableElementWrapper) -> any View) -> DraggableGrid {
         var view = self
         view.content = content
+        
+        return view
+    }
+    
+    func draggableContent(_ draggableContent: @escaping (DraggableElementWrapper) -> any View) -> DraggableGrid {
+        var view = self
+        view.draggableContent = draggableContent
         
         return view
     }
