@@ -17,6 +17,14 @@ struct DraggableElement: View {
     let element: DraggableElementWrapper
     let content: (() -> any View)
     
+    private var onSortChange: ((Int) -> Void)?
+    
+    init(element: DraggableElementWrapper, content: @escaping (() -> any View)) {
+        self.element = element
+        self.content = content
+    }
+    
+    
     var body: some View {
         ZStack {
             AnyView(content())
@@ -49,9 +57,8 @@ struct DraggableElement: View {
                 }
             }
             .onEnded { value in
-                
                 model.finishSort { newPosition in
-                    print("New position: \(newPosition)")
+                    onSortChange?(newPosition)
                 }
                 
                 withAnimation {
@@ -61,5 +68,14 @@ struct DraggableElement: View {
             }
         
         return longPressGesture.sequenced(before: dragGesture)
+    }
+}
+
+extension DraggableElement {
+    func onSortChange(_ onSortChange: @escaping (Int) -> Void) -> DraggableElement {
+        var view = self
+        view.onSortChange = onSortChange
+        
+        return view
     }
 }

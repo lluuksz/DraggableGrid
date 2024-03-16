@@ -48,6 +48,9 @@ struct ContentView: View {
                         .frame(width: 100, height: 100)
                         .background(Color.gray.opacity(0.3))
                 }
+                .onSortChange { newPosition in
+                    print("newPosition: \(newPosition)")
+                }
         }
     }
 }

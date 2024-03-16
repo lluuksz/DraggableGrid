@@ -20,6 +20,7 @@ struct DraggableGrid: View {
     private var content: ((DraggableElementWrapper) -> any View)?
     private var draggableContent: ((DraggableElementWrapper) -> any View)?
     private var placeholder: (() -> any View)?
+    private var onSortChange: ((Int) -> Void)?
     
     init(
         columns: Int,
@@ -59,6 +60,9 @@ struct DraggableGrid: View {
                 if let draggableContent {
                     DraggableElement(element: element) {
                         draggableContent(element)
+                    }
+                    .onSortChange { newPosition in
+                        onSortChange?(newPosition)
                     }
                 }
             }
@@ -100,6 +104,13 @@ extension DraggableGrid {
     func placeholder(_ placeholder: @escaping () -> any View) -> DraggableGrid {
         var view = self
         view.placeholder = placeholder
+        
+        return view
+    }
+    
+    func onSortChange(_ onSortChange: @escaping (Int) -> Void) -> DraggableGrid {
+        var view = self
+        view.onSortChange = onSortChange
         
         return view
     }
