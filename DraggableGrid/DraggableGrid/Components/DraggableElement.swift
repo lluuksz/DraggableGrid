@@ -24,7 +24,6 @@ struct DraggableElement: View {
         self.content = content
     }
     
-    
     var body: some View {
         ZStack {
             AnyView(content())
