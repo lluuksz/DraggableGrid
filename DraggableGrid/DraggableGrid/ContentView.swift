@@ -26,25 +26,22 @@ struct ContentView: View {
         VStack {
             DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: list)
                 .content { element in
-                    ZStack {
-                        Text(element.name)
-                    }
-                    .frame(width: 100, height: 100)
-                    .background(Color.red)
+                    Circle()
+                        .fill(Color.green.opacity(0.5))
+                        .frame(width: 100, height: 100)
+                        .overlay(Text(element.name), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
                 .draggableContent { element in
-                    ZStack {
-                        Text(element.name)
-                    }
-                    .frame(width: 100, height: 100)
-                    .background(Color.blue)
+                    Circle()
+                        .fill(Color.blue.opacity(0.5))
+                        .frame(width: 100, height: 100)
                 }
                 .placeholder {
-                    Rectangle()
+                    Circle()
+                        .fill(Color.gray.opacity(0.5))
                         .frame(width: 100, height: 100)
-                        .background(Color.gray.opacity(0.3))
                 }
-                .onSortChange { result in 
+                .onSortChange { result in
                     let offset = result.oldPosition < result.newPosition ? result.newPosition + 1 : result.newPosition
                     list.move(fromOffsets: IndexSet([result.oldPosition]), toOffset: offset)
                 }
