@@ -23,7 +23,7 @@ struct ContentView: View {
     @ObservedObject var model = DraggableGridModel()
     
     init() {
-        model.setElement(elements: DraggableElementWrapper.all)
+        model.setElements(elements: DraggableElementWrapper.all)
     }
     
     var body: some View {

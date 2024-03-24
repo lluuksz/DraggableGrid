@@ -20,7 +20,7 @@ class DraggableGridModel: ObservableObject {
     private var newPosition: Int?
     private var locations: [Int:CGRect] = [:]
     
-    func setElement(elements: [DraggableElementWrapper]) {
+    func setElements(elements: [DraggableElementWrapper]) {
         self.elements1 = elements
         self.elements2 = elements
     }

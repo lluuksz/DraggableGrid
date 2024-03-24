@@ -81,7 +81,7 @@ struct DraggableGrid: View {
     ]
     
     var model = DraggableGridModel()
-    model.setElement(elements: elements)
+    model.setElements(elements: elements)
     
     return DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, model: model)
 }
