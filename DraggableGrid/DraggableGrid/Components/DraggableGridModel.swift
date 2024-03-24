@@ -60,11 +60,9 @@ class DraggableGridModel: ObservableObject {
         }
         
         newPosition = newLocation.key
-        
-        let offset = index < newLocation.key ? newLocation.key + 1 : newLocation.key
-        
+
         withAnimation {
-            elements1.move(fromOffsets: IndexSet([index]), toOffset: offset)
+            elements1.sort(oldPosition: index, newPosition: newLocation.key)
         }
     }
     
@@ -82,4 +80,5 @@ class DraggableGridModel: ObservableObject {
         
         completion(result)
     }
+    
 }

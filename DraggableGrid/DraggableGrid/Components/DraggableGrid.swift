@@ -27,7 +27,6 @@ struct DraggableGrid: View {
         columnSpacing: CGFloat,
         rowSpacing: CGFloat,
         list: [DraggableElementWrapper]) {
-            print("Init DraggableGrid")
             self.columns = columns
             self.columnSpacing = columnSpacing
             self.rowSpacing = rowSpacing

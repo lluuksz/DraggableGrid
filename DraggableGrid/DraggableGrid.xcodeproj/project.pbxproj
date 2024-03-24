@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F43254A72BA5B3F300EBA45D /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43254A62BA5B3F300EBA45D /* CGRect.swift */; };
 		F43254A92BA5B45800EBA45D /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43254A82BA5B45800EBA45D /* Dictionary.swift */; };
+		F4427FE52BB069BE003C38BC /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4427FE42BB069BE003C38BC /* Array.swift */; };
 		F45ECE682B55C81B008264B4 /* DraggableGridApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45ECE672B55C81B008264B4 /* DraggableGridApp.swift */; };
 		F45ECE6A2B55C81B008264B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45ECE692B55C81B008264B4 /* ContentView.swift */; };
 		F45ECE6C2B55C81D008264B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45ECE6B2B55C81D008264B4 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		F43254A62BA5B3F300EBA45D /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		F43254A82BA5B45800EBA45D /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		F4427FE42BB069BE003C38BC /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		F45ECE642B55C81B008264B4 /* DraggableGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DraggableGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45ECE672B55C81B008264B4 /* DraggableGridApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableGridApp.swift; sourceTree = "<group>"; };
 		F45ECE692B55C81B008264B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			children = (
 				F43254A62BA5B3F300EBA45D /* CGRect.swift */,
 				F43254A82BA5B45800EBA45D /* Dictionary.swift */,
+				F4427FE42BB069BE003C38BC /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45ECE6A2B55C81B008264B4 /* ContentView.swift in Sources */,
+				F4427FE52BB069BE003C38BC /* Array.swift in Sources */,
 				F4A547942B56BA850080A7E5 /* DraggableGrid.swift in Sources */,
 				F49F22612BA5A633007D4F5B /* DraggableGridModel.swift in Sources */,
 				F45ECE682B55C81B008264B4 /* DraggableGridApp.swift in Sources */,

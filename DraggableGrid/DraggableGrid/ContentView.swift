@@ -42,8 +42,7 @@ struct ContentView: View {
                         .frame(width: 100, height: 100)
                 }
                 .onSortChange { result in
-                    let offset = result.oldPosition < result.newPosition ? result.newPosition + 1 : result.newPosition
-                    list.move(fromOffsets: IndexSet([result.oldPosition]), toOffset: offset)
+                    list.sort(oldPosition: result.oldPosition, newPosition: result.newPosition)
                 }
         }
     }
