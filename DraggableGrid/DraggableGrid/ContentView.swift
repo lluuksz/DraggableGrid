@@ -29,7 +29,7 @@ struct ContentView: View {
                     Circle()
                         .fill(Color.green.opacity(0.5))
                         .frame(width: 100, height: 100)
-                        .overlay(Text(element.name), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .overlay(Text(element.name), alignment: .center)
                 }
                 .draggableContent { element in
                     Circle()
