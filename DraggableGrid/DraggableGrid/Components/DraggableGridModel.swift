@@ -9,6 +9,14 @@ import Foundation
 import SwiftUI
 
 class DraggableGridModel: ObservableObject {
+    
+    struct SortFinishResult {
+        let oldPosition: Int
+        let newPosition: Int
+    }
+    
+    typealias SortFinish = (SortFinishResult) -> Void
+    
     private enum C {
         static let ratio: CGFloat = 15
     }
@@ -17,6 +25,7 @@ class DraggableGridModel: ObservableObject {
     @Published private(set) var elements2: [DraggableElementWrapper] = []
     @Published var draggableElement: DraggableElementWrapper?
     
+    private var oldPosition: Int?
     private var newPosition: Int?
     private var locations: [Int:CGRect] = [:]
     
@@ -46,7 +55,9 @@ class DraggableGridModel: ObservableObject {
         guard let newLocation = locations.firstMatch(point: point, ratio: C.ratio) else { return }
         guard newLocation.key != index else { return }
         
+        oldPosition = index
         newPosition = newLocation.key
+        
         let offset = index < newLocation.key ? newLocation.key + 1 : newLocation.key
         
         withAnimation {
@@ -54,14 +65,18 @@ class DraggableGridModel: ObservableObject {
         }
     }
     
-    func finishSort(completion: (Int) -> Void) {
+    func finishSort(completion: SortFinish) {
         defer {
+            oldPosition = nil
             newPosition = nil
             draggableElement = nil
         }
         
+        guard let oldPosition else { return }
         guard let newPosition else { return }
         
-        completion(newPosition)
+        let result = SortFinishResult(oldPosition: oldPosition, newPosition: newPosition)
+        
+        completion(result)
     }
 }

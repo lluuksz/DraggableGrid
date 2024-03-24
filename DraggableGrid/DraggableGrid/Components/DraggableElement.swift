@@ -17,7 +17,7 @@ struct DraggableElement: View {
     let element: DraggableElementWrapper
     let content: (() -> any View)
     
-    private var onSortChange: ((Int) -> Void)?
+    private var onSortChange: ((DraggableGridModel.SortFinishResult) -> Void)?
     
     init(element: DraggableElementWrapper, content: @escaping (() -> any View)) {
         self.element = element
@@ -71,7 +71,7 @@ struct DraggableElement: View {
 }
 
 extension DraggableElement {
-    func onSortChange(_ onSortChange: @escaping (Int) -> Void) -> DraggableElement {
+    func onSortChange(_ onSortChange: @escaping (DraggableGridModel.SortFinishResult) -> Void) -> DraggableElement {
         var view = self
         view.onSortChange = onSortChange
         
