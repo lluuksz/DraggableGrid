@@ -26,11 +26,13 @@ struct DraggableGrid: View {
         columns: Int,
         columnSpacing: CGFloat,
         rowSpacing: CGFloat,
-        model: DraggableGridModel) {
+        list: [DraggableElementWrapper]) {
+            print("Init DraggableGrid")
             self.columns = columns
             self.columnSpacing = columnSpacing
             self.rowSpacing = rowSpacing
-            self.model = model
+            self.model = DraggableGridModel()
+            self.model.setElements(elements: list)
     }
     
     var body: some View {
@@ -83,7 +85,7 @@ struct DraggableGrid: View {
     var model = DraggableGridModel()
     model.setElements(elements: elements)
     
-    return DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, model: model)
+    return DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: [])
 }
 
 extension DraggableGrid {

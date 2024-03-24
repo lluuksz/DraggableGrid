@@ -20,15 +20,11 @@ extension DraggableElementWrapper {
 }
 
 struct ContentView: View {
-    @ObservedObject var model = DraggableGridModel()
-    
-    init() {
-        model.setElements(elements: DraggableElementWrapper.all)
-    }
+    @State private var list: [DraggableElementWrapper] = DraggableElementWrapper.all
     
     var body: some View {
         VStack {
-            DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, model: model)
+            DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: list)
                 .content { element in
                     ZStack {
                         Text(element.name)
@@ -48,9 +44,9 @@ struct ContentView: View {
                         .frame(width: 100, height: 100)
                         .background(Color.gray.opacity(0.3))
                 }
-                .onSortChange { result in
-                    print("Old position: \(result.oldPosition)")
-                    print("New position: \(result.newPosition)")
+                .onSortChange { result in 
+                    let offset = result.oldPosition < result.newPosition ? result.newPosition + 1 : result.newPosition
+                    list.move(fromOffsets: IndexSet([result.oldPosition]), toOffset: offset)
                 }
         }
     }

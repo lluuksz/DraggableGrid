@@ -55,7 +55,10 @@ class DraggableGridModel: ObservableObject {
         guard let newLocation = locations.firstMatch(point: point, ratio: C.ratio) else { return }
         guard newLocation.key != index else { return }
         
-        oldPosition = index
+        if oldPosition == nil {
+            oldPosition = index
+        }
+        
         newPosition = newLocation.key
         
         let offset = index < newLocation.key ? newLocation.key + 1 : newLocation.key
