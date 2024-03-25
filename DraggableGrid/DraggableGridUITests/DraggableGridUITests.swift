@@ -19,13 +19,13 @@ final class DraggableGridUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
-        var element0 = app.otherElements["DraggableGridDraggableElement0"]
-        var element1 = app.otherElements["DraggableGridDraggableElement1"]
-        var element2 = app.otherElements["DraggableGridDraggableElement2"]
-        var element3 = app.otherElements["DraggableGridDraggableElement3"]
-        var element4 = app.otherElements["DraggableGridDraggableElement4"]
-        var element5 = app.otherElements["DraggableGridDraggableElement5"]
-        var element6 = app.otherElements["DraggableGridDraggableElement6"]
+        var element0 = app.draggableElement(index: 0)
+        var element1 = app.draggableElement(index: 1)
+        var element2 = app.draggableElement(index: 2)
+        var element3 = app.draggableElement(index: 3)
+        var element4 = app.draggableElement(index: 4)
+        var element5 = app.draggableElement(index: 5)
+        var element6 = app.draggableElement(index: 6)
         
         let element0Label = element0.label
         let element1Label = element1.label
@@ -37,13 +37,13 @@ final class DraggableGridUITests: XCTestCase {
         
         element0.press(forDuration: 1, thenDragTo: element5)
         
-        element0 = app.otherElements["DraggableGridDraggableElement0"]
-        element1 = app.otherElements["DraggableGridDraggableElement1"]
-        element2 = app.otherElements["DraggableGridDraggableElement2"]
-        element3 = app.otherElements["DraggableGridDraggableElement3"]
-        element4 = app.otherElements["DraggableGridDraggableElement4"]
-        element5 = app.otherElements["DraggableGridDraggableElement5"]
-        element6 = app.otherElements["DraggableGridDraggableElement6"]
+        element0 = app.draggableElement(index: 0)
+        element1 = app.draggableElement(index: 1)
+        element2 = app.draggableElement(index: 2)
+        element3 = app.draggableElement(index: 3)
+        element4 = app.draggableElement(index: 4)
+        element5 = app.draggableElement(index: 5)
+        element6 = app.draggableElement(index: 6)
         
         XCTAssertEqual(element0.label, element1Label)
         XCTAssertEqual(element1.label, element2Label)
@@ -52,6 +52,14 @@ final class DraggableGridUITests: XCTestCase {
         XCTAssertEqual(element4.label, element5Label)
         XCTAssertEqual(element5.label, element0Label)
         XCTAssertEqual(element6.label, element6Label)
+    }
+    
+}
+
+fileprivate extension XCUIApplication {
+    
+    func draggableElement(index: Int) -> XCUIElement {
+        otherElements["DraggableGridDraggableElement\(index)"]
     }
     
 }
