@@ -8,18 +8,18 @@
 import Foundation
 import SwiftUI
 
-struct DraggableElement: View {
-    @EnvironmentObject var model: DraggableGridModel
+struct DraggableElement<T: Identifiable>: View where T.ID == String {
+    @EnvironmentObject var model: DraggableGridModel<T>
     
     @State private var offset: CGSize = .zero
     @State private var active: Bool = false
     
-    let element: DraggableElementWrapper
+    let element: T
     let content: (() -> any View)
     
-    private var onSortChange: ((DraggableGridModel.SortFinishResult) -> Void)?
+    private var onSortChange: ((DraggableGridSortFinishResult) -> Void)?
     
-    init(element: DraggableElementWrapper, content: @escaping (() -> any View)) {
+    init(element: T, content: @escaping (() -> any View)) {
         self.element = element
         self.content = content
     }
@@ -71,7 +71,7 @@ struct DraggableElement: View {
 }
 
 extension DraggableElement {
-    func onSortChange(_ onSortChange: @escaping (DraggableGridModel.SortFinishResult) -> Void) -> DraggableElement {
+    func onSortChange(_ onSortChange: @escaping (DraggableGridSortFinishResult) -> Void) -> DraggableElement {
         var view = self
         view.onSortChange = onSortChange
         

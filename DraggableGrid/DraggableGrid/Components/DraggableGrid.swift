@@ -7,30 +7,30 @@
 
 import SwiftUI
 
-struct DraggableGrid: View {
+struct DraggableGrid<T: Identifiable>: View where T.ID == String {
     @Namespace var namespace
-    @State private var draggingElement: DraggableElementWrapper?
+    @State private var draggingElement: T?
     @State private var offset: CGSize = .zero
-    @ObservedObject private var model: DraggableGridModel
+    @ObservedObject private var model: DraggableGridModel<T>
     
     private let columns: Int
     private let columnSpacing: CGFloat
     private let rowSpacing: CGFloat
     
-    private var content: ((DraggableElementWrapper) -> any View)?
-    private var draggableContent: ((DraggableElementWrapper) -> any View)?
+    private var content: ((T) -> any View)?
+    private var draggableContent: ((T) -> any View)?
     private var placeholder: (() -> any View)?
-    private var onSortChange: ((DraggableGridModel.SortFinishResult) -> Void)?
+    private var onSortChange: ((DraggableGridSortFinishResult) -> Void)?
     
     init(
         columns: Int,
         columnSpacing: CGFloat,
         rowSpacing: CGFloat,
-        list: [DraggableElementWrapper]) {
+        list: [T]) {
             self.columns = columns
             self.columnSpacing = columnSpacing
             self.rowSpacing = rowSpacing
-            self.model = DraggableGridModel()
+            self.model = DraggableGridModel<T>()
             self.model.setElements(elements: list)
     }
     
@@ -81,21 +81,21 @@ struct DraggableGrid: View {
         DraggableElementWrapper(name: "Element 4")
     ]
     
-    var model = DraggableGridModel()
+    var model = DraggableGridModel<DraggableElementWrapper>()
     model.setElements(elements: elements)
     
-    return DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: [])
+    return DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: elements)
 }
 
 extension DraggableGrid {
-    func content(_ content: @escaping (DraggableElementWrapper) -> any View) -> DraggableGrid {
+    func content(_ content: @escaping (T) -> any View) -> DraggableGrid {
         var view = self
         view.content = content
         
         return view
     }
     
-    func draggableContent(_ draggableContent: @escaping (DraggableElementWrapper) -> any View) -> DraggableGrid {
+    func draggableContent(_ draggableContent: @escaping (T) -> any View) -> DraggableGrid {
         var view = self
         view.draggableContent = draggableContent
         
@@ -109,7 +109,7 @@ extension DraggableGrid {
         return view
     }
     
-    func onSortChange(_ onSortChange: @escaping (DraggableGridModel.SortFinishResult) -> Void) -> DraggableGrid {
+    func onSortChange(_ onSortChange: @escaping (DraggableGridSortFinishResult) -> Void) -> DraggableGrid {
         var view = self
         view.onSortChange = onSortChange
         

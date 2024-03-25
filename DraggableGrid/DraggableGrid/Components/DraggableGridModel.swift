@@ -8,33 +8,31 @@
 import Foundation
 import SwiftUI
 
-class DraggableGridModel: ObservableObject {
+struct DraggableGridSortFinishResult {
+    let oldPosition: Int
+    let newPosition: Int
+}
+
+class DraggableGridModel<T: Identifiable>: ObservableObject {
     
-    struct SortFinishResult {
-        let oldPosition: Int
-        let newPosition: Int
-    }
+    typealias SortFinish = (DraggableGridSortFinishResult) -> Void
     
-    typealias SortFinish = (SortFinishResult) -> Void
+    @Published private(set) var elements1: [T] = []
+    @Published private(set) var elements2: [T] = []
+    @Published var draggableElement: T?
     
-    private enum C {
-        static let ratio: CGFloat = 15
-    }
-    
-    @Published private(set) var elements1: [DraggableElementWrapper] = []
-    @Published private(set) var elements2: [DraggableElementWrapper] = []
-    @Published var draggableElement: DraggableElementWrapper?
+    private let ratio: CGFloat = 15
     
     private var oldPosition: Int?
     private var newPosition: Int?
     private var locations: [Int:CGRect] = [:]
     
-    func setElements(elements: [DraggableElementWrapper]) {
+    func setElements(elements: [T]) {
         self.elements1 = elements
         self.elements2 = elements
     }
     
-    func saveLocation(element: DraggableElementWrapper, rect: CGRect) {
+    func saveLocation(element: T, rect: CGRect) {
         guard let index = elements1.firstIndex(where: { $0.id == element.id }) else { return }
         
         if locations[index] == nil {
@@ -42,17 +40,17 @@ class DraggableGridModel: ObservableObject {
         }
     }
     
-    func getLocation(for element: DraggableElementWrapper) -> CGRect? {
+    func getLocation(for element: T) -> CGRect? {
         guard let index = elements2.firstIndex(where: { $0.id == element.id }) else { return nil }
         
         return locations[index]
     }
     
-    func sort(element: DraggableElementWrapper, point: CGPoint) {
+    func sort(element: T, point: CGPoint) {
         draggableElement = element
         
         guard let index = elements1.firstIndex(where: { $0.id == element.id }) else { return }
-        guard let newLocation = locations.firstMatch(point: point, ratio: C.ratio) else { return }
+        guard let newLocation = locations.firstMatch(point: point, ratio: ratio) else { return }
         guard newLocation.key != index else { return }
         
         if oldPosition == nil {
@@ -76,7 +74,7 @@ class DraggableGridModel: ObservableObject {
         guard let oldPosition else { return }
         guard let newPosition else { return }
         
-        let result = SortFinishResult(oldPosition: oldPosition, newPosition: newPosition)
+        let result = DraggableGridSortFinishResult(oldPosition: oldPosition, newPosition: newPosition)
         
         completion(result)
     }
