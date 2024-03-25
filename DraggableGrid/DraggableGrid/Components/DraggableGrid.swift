@@ -9,8 +9,6 @@ import SwiftUI
 
 struct DraggableGrid<T: Identifiable>: View where T.ID == String {
     @Namespace var namespace
-    @State private var draggingElement: T?
-    @State private var offset: CGSize = .zero
     @ObservedObject private var model: DraggableGridModel<T>
     
     private let columns: Int
