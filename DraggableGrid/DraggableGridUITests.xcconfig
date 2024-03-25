@@ -1,0 +1,11 @@
+//
+//  DraggableGridUITests.xcconfig
+//  DraggableGridUITests
+//
+//  Created by lluuksz on 25/03/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+OTHER_SWIFT_FLAGS = -DTEST

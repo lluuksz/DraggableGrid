@@ -34,7 +34,7 @@ struct DraggableGrid<T: Identifiable>: View where T.ID == String {
     
     var body: some View {
         ZStack {
-            Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements1) { element in
+            Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements1) { element, index in
                 if model.draggableElement?.id == element.id {
                     if let placeholder {
                         AnyView(placeholder())
@@ -55,7 +55,7 @@ struct DraggableGrid<T: Identifiable>: View where T.ID == String {
                 }
             }
             
-            Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements2) { element in
+            Grid(columns: columns, columnSpacing: columnSpacing, rowSpacing: rowSpacing, list: model.elements2) { element, index in
                 if let draggableContent {
                     DraggableElement(element: element) {
                         draggableContent(element)
@@ -63,6 +63,10 @@ struct DraggableGrid<T: Identifiable>: View where T.ID == String {
                     .onSortChange { newPosition in
                         onSortChange?(newPosition)
                     }
+                    #if TEST
+                    .accessibilityIdentifier("DraggableGridDraggableElement\(index)")
+                    .accessibilityLabel(Text("DraggableGridDraggableElement\(element.id)"))
+                    #endif
                 }
             }
         }

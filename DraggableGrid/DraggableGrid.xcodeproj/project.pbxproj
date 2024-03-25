@@ -19,7 +19,19 @@
 		F49F22652BA5A663007D4F5B /* DraggableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F22642BA5A663007D4F5B /* DraggableElement.swift */; };
 		F4A547902B56872D0080A7E5 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5478F2B56872D0080A7E5 /* Grid.swift */; };
 		F4A547942B56BA850080A7E5 /* DraggableGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A547932B56BA850080A7E5 /* DraggableGrid.swift */; };
+		F4EF69532BB1B4260016A695 /* DraggableGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF69522BB1B4260016A695 /* DraggableGridUITests.swift */; };
+		F4EF695C2BB1C2800016A695 /* DraggableGridUITests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F4EF695B2BB1C2800016A695 /* DraggableGridUITests.xcconfig */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4EF69562BB1B4260016A695 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F45ECE5C2B55C81B008264B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F45ECE632B55C81B008264B4;
+			remoteInfo = DraggableGrid;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F43254A62BA5B3F300EBA45D /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
@@ -35,10 +47,20 @@
 		F49F22642BA5A663007D4F5B /* DraggableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableElement.swift; sourceTree = "<group>"; };
 		F4A5478F2B56872D0080A7E5 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		F4A547932B56BA850080A7E5 /* DraggableGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableGrid.swift; sourceTree = "<group>"; };
+		F4EF69502BB1B4260016A695 /* DraggableGridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DraggableGridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4EF69522BB1B4260016A695 /* DraggableGridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableGridUITests.swift; sourceTree = "<group>"; };
+		F4EF695B2BB1C2800016A695 /* DraggableGridUITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DraggableGridUITests.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F45ECE612B55C81B008264B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4EF694D2BB1B4260016A695 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,7 +83,9 @@
 		F45ECE5B2B55C81B008264B4 = {
 			isa = PBXGroup;
 			children = (
+				F4EF695B2BB1C2800016A695 /* DraggableGridUITests.xcconfig */,
 				F45ECE662B55C81B008264B4 /* DraggableGrid */,
+				F4EF69512BB1B4260016A695 /* DraggableGridUITests */,
 				F45ECE652B55C81B008264B4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				F45ECE642B55C81B008264B4 /* DraggableGrid.app */,
+				F4EF69502BB1B4260016A695 /* DraggableGridUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +132,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		F4EF69512BB1B4260016A695 /* DraggableGridUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF69522BB1B4260016A695 /* DraggableGridUITests.swift */,
+			);
+			path = DraggableGridUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,6 +160,24 @@
 			productReference = F45ECE642B55C81B008264B4 /* DraggableGrid.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F4EF694F2BB1B4260016A695 /* DraggableGridUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4EF69582BB1B4260016A695 /* Build configuration list for PBXNativeTarget "DraggableGridUITests" */;
+			buildPhases = (
+				F4EF694C2BB1B4260016A695 /* Sources */,
+				F4EF694D2BB1B4260016A695 /* Frameworks */,
+				F4EF694E2BB1B4260016A695 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4EF69572BB1B4260016A695 /* PBXTargetDependency */,
+			);
+			name = DraggableGridUITests;
+			productName = DraggableGridUITests;
+			productReference = F4EF69502BB1B4260016A695 /* DraggableGridUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -134,11 +185,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1510;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					F45ECE632B55C81B008264B4 = {
 						CreatedOnToolsVersion = 15.1;
+					};
+					F4EF694F2BB1B4260016A695 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = F45ECE632B55C81B008264B4;
 					};
 				};
 			};
@@ -156,6 +211,7 @@
 			projectRoot = "";
 			targets = (
 				F45ECE632B55C81B008264B4 /* DraggableGrid */,
+				F4EF694F2BB1B4260016A695 /* DraggableGridUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -167,6 +223,14 @@
 			files = (
 				F45ECE6F2B55C81D008264B4 /* Preview Assets.xcassets in Resources */,
 				F45ECE6C2B55C81D008264B4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4EF694E2BB1B4260016A695 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4EF695C2BB1C2800016A695 /* DraggableGridUITests.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +254,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4EF694C2BB1B4260016A695 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4EF69532BB1B4260016A695 /* DraggableGridUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4EF69572BB1B4260016A695 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F45ECE632B55C81B008264B4 /* DraggableGrid */;
+			targetProxy = F4EF69562BB1B4260016A695 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F45ECE702B55C81D008264B4 /* Debug */ = {
@@ -372,6 +452,156 @@
 			};
 			name = Release;
 		};
+		F4EF69592BB1B4260016A695 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TGTKLDS83Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lukasz.DraggableGridUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DraggableGrid;
+			};
+			name = Debug;
+		};
+		F4EF695A2BB1B4260016A695 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TGTKLDS83Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lukasz.DraggableGridUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DraggableGrid;
+			};
+			name = Release;
+		};
+		F4EF695D2BB1C2CE0016A695 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Test;
+		};
+		F4EF695E2BB1C2CE0016A695 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4EF695B2BB1C2800016A695 /* DraggableGridUITests.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DraggableGrid/Preview Content\"";
+				DEVELOPMENT_TEAM = TGTKLDS83Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lukasz.DraggableGrid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Test;
+		};
+		F4EF695F2BB1C2CE0016A695 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TGTKLDS83Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lukasz.DraggableGridUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DraggableGrid;
+			};
+			name = Test;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -379,6 +609,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F45ECE702B55C81D008264B4 /* Debug */,
+				F4EF695D2BB1C2CE0016A695 /* Test */,
 				F45ECE712B55C81D008264B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -388,7 +619,18 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F45ECE732B55C81D008264B4 /* Debug */,
+				F4EF695E2BB1C2CE0016A695 /* Test */,
 				F45ECE742B55C81D008264B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4EF69582BB1B4260016A695 /* Build configuration list for PBXNativeTarget "DraggableGridUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4EF69592BB1B4260016A695 /* Debug */,
+				F4EF695F2BB1C2CE0016A695 /* Test */,
+				F4EF695A2BB1B4260016A695 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

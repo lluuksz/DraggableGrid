@@ -29,9 +29,9 @@ struct Grid<Content: View, Element: ElementType>: View where Element.ID == Strin
     private let columnSpacing: CGFloat
     private let rowSpacing: CGFloat
     private var matrix: [[MatrixItem]] = []
-    private let content: (Element) -> Content
+    private let content: (Element, Int) -> Content
     
-    init(columns: Int, columnSpacing: CGFloat, rowSpacing: CGFloat, list: [Element], @ViewBuilder content: @escaping (Element) -> Content) {
+    init(columns: Int, columnSpacing: CGFloat, rowSpacing: CGFloat, list: [Element], @ViewBuilder content: @escaping (Element, Int) -> Content) {
         self.columns = columns
         self.rowSpacing = rowSpacing
         self.columnSpacing = columnSpacing
@@ -65,7 +65,7 @@ struct Grid<Content: View, Element: ElementType>: View where Element.ID == Strin
             ForEach(0 ..< matrix.count, id: \.self) { i in
                 HStack(spacing: columnSpacing) {
                     ForEach(matrix[i]) { element in
-                        content(element.element)
+                        content(element.element, element.index)
                     }
                 }
             }
@@ -86,7 +86,7 @@ struct Grid<Content: View, Element: ElementType>: View where Element.ID == Strin
         PreviewElement(text: "Element 4")
     ]
     
-    return Grid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: list) { element in
+    return Grid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: list) { element, _ in
         VStack(spacing: 8) {
             Image(systemName: "star")
             Text(element.text)
