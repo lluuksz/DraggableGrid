@@ -44,7 +44,7 @@ struct ContentView: View {
                 }
                 .placeholder {
                     Circle()
-                        .fill(Color.secondary)
+                        .fill(Color.secondary.opacity(0.3))
                         .frame(width: 100, height: 100)
                 }
                 .onSortChange { result in
@@ -59,7 +59,6 @@ struct ContentView: View {
         var body: some View {
             Text(text)
                 .foregroundColor(.accent)
-                .bold()
         }
     }
 
