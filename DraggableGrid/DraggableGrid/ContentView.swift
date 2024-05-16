@@ -7,38 +7,44 @@
 
 import SwiftUI
 
-extension DraggableElementWrapper {
-    static let all: [DraggableElementWrapper] = [
-        DraggableElementWrapper(name: "Bubble 1"),
-        DraggableElementWrapper(name: "Bubble 2"),
-        DraggableElementWrapper(name: "Bubble 3"),
-        DraggableElementWrapper(name: "Bubble 4"),
-        DraggableElementWrapper(name: "Bubble 5"),
-        DraggableElementWrapper(name: "Bubble 6"),
-        DraggableElementWrapper(name: "Bubble 7")
+extension Bubble {
+    static let all: [Bubble] = [
+        Bubble(name: "Bubble 1"),
+        Bubble(name: "Bubble 2"),
+        Bubble(name: "Bubble 3"),
+        Bubble(name: "Bubble 4"),
+        Bubble(name: "Bubble 5"),
+        Bubble(name: "Bubble 6"),
+        Bubble(name: "Bubble 7"),
+        Bubble(name: "Bubble 8"),
+        Bubble(name: "Bubble 9"),
+        Bubble(name: "Bubble 10"),
+        Bubble(name: "Bubble 11"),
+        Bubble(name: "Bubble 12"),
+        Bubble(name: "Bubble 13")
     ]
 }
 
 struct ContentView: View {
-    @State private var list: [DraggableElementWrapper] = DraggableElementWrapper.all
+    @State private var list: [Bubble] = Bubble.all
     
     var body: some View {
         VStack {
             DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: list)
                 .content { element in
                     Circle()
-                        .fill(Color.green.opacity(0.5))
+                        .fill(Color.primary)
                         .frame(width: 100, height: 100)
-                        .overlay(Text(element.name), alignment: .center)
+                        .overlay(BubbleText(text: element.name), alignment: .center)
                 }
                 .draggableContent { element in
                     Circle()
-                        .fill(Color.blue.opacity(0.5))
+                        .fill(Color.secondary)
                         .frame(width: 100, height: 100)
                 }
                 .placeholder {
                     Circle()
-                        .fill(Color.gray.opacity(0.5))
+                        .fill(Color.secondary)
                         .frame(width: 100, height: 100)
                 }
                 .onSortChange { result in
@@ -46,6 +52,17 @@ struct ContentView: View {
                 }
         }
     }
+    
+    struct BubbleText: View {
+        let text: String
+        
+        var body: some View {
+            Text(text)
+                .foregroundColor(.accent)
+                .bold()
+        }
+    }
+
 }
 
 #Preview {

@@ -76,14 +76,14 @@ struct DraggableGrid<T: Identifiable>: View where T.ID == String {
 }
 
 #Preview {
-    let elements: [DraggableElementWrapper] = [
-        DraggableElementWrapper(name: "Element 1"),
-        DraggableElementWrapper(name: "Element 2"),
-        DraggableElementWrapper(name: "Element 3"),
-        DraggableElementWrapper(name: "Element 4")
+    let elements: [Bubble] = [
+        Bubble(name: "Element 1"),
+        Bubble(name: "Element 2"),
+        Bubble(name: "Element 3"),
+        Bubble(name: "Element 4")
     ]
     
-    var model = DraggableGridModel<DraggableElementWrapper>()
+    var model = DraggableGridModel<Bubble>()
     model.setElements(elements: elements)
     
     return DraggableGrid(columns: 3, columnSpacing: 8, rowSpacing: 8, list: elements)
